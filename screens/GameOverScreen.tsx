@@ -14,10 +14,6 @@ function GameOverScreen({
   userNumber,
   onStartNewGame,
 }: GameOverScreenProps) {
-  const newGameHandler = () => {
-    onStartNewGame();
-  };
-
   return (
     <View style={styles.rootContainer}>
       <Header>Game Over!</Header>
@@ -33,7 +29,7 @@ function GameOverScreen({
         rounds to guess the number{" "}
         <Text style={styles.highlight}>{userNumber}</Text>.
       </Text>
-      <PrimaryButton onPress={newGameHandler}>New Game</PrimaryButton>
+      <PrimaryButton onPress={onStartNewGame}>New Game</PrimaryButton>
     </View>
   );
 }

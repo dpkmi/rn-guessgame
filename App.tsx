@@ -4,11 +4,17 @@ import { StyleSheet, ImageBackground } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import { useFonts } from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
 
 // screens
 import StartGameScreen from "./screens/StartGameScreen";
 import GameScreen from "./screens/GameScreen";
 import GameOverScreen from "./screens/GameOverScreen";
+
+SplashScreen.setOptions({
+  duration: 1000,
+  fade: true,
+});
 
 export default function App() {
   const [show, setShow] = useState(true);
@@ -26,15 +32,14 @@ export default function App() {
     setGameOver(false);
   };
 
-  function newGameHandler() {
-    setUserNumber(null);
-    setRounds(0);
-    setGameOver(true);
-  }
-
   function gameOverHandler(totalRounds: number) {
     setRounds(totalRounds);
     setGameOver(true);
+  }
+
+  function newGameHandler() {
+    setUserNumber(null);
+    setRounds(0);
   }
 
   let screen = (

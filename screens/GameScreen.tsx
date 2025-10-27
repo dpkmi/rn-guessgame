@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, ScrollView } from "react-native";
+import { StyleSheet, View, Text, ScrollView, FlatList } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Header from "../components/ui/Header";
 import NumberContainer from "../components/game/NumberContainer";
@@ -36,6 +36,11 @@ const GameScreen = ({ userNumber, onGameOver }: GameScreenProps) => {
       onGameOver(guessHistory.length + 1);
     }
   }, [currentGuess, userNumber, onGameOver]);
+
+  useEffect(() => {
+    minBoundary = 1;
+    maxBoundary = 100;
+  }, []);
 
   // handler for next guess
   function nextGuessHandler(direction: "lower" | "greater") {
@@ -78,6 +83,15 @@ const GameScreen = ({ userNumber, onGameOver }: GameScreenProps) => {
           </PrimaryButton>
         </View>
       </View>
+      {/* <View style={styles.scrollView}>
+        <FlatList
+          data={guessHistory}
+          renderItem={({ item, index }) => (
+            <OpponentsGuess guessNumber={item} round={index + 1} />
+          )}
+        />
+      </View> */}
+
       <ScrollView contentContainerStyle={styles.scrollView}>
         {/* map over guesses */}
         {guessHistory.map((guess, index) => (
